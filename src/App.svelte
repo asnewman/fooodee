@@ -1,6 +1,12 @@
 <script>
+  import { onMount } from "svelte";
+
   import foods from "./foods.js";
   import Food from "./components/Food.svelte";
+
+  onMount(async () => {
+    await fetch("/api/hit-logger");
+  });
 </script>
 
 <style>
@@ -30,10 +36,23 @@
     position: absolute;
     top: 50%;
     left: 50%;
-    margin: -202px -475px;
+    margin: -202px -638px;
   }
 
-  @media screen and (max-width: 960px) {
+  @media screen and (max-width: 1290px) {
+    .foods {
+      width: 650px;
+      top: 80px;
+      left: 50%;
+      margin: 0 0 0 -315px;
+    }
+
+    .attributes {
+      visibility: hidden;
+    }
+  }
+
+  @media screen and (max-width: 650px) {
     .foods {
       width: 300px;
       top: 80px;
