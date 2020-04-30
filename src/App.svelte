@@ -1,48 +1,91 @@
 <script>
-  import { onMount } from "svelte";
-  export let date;
-
-  onMount(async () => {
-    const res = await fetch("/api/date");
-    const newDate = await res.text();
-    date = newDate;
-  });
+  import foods from "./foods.js";
+  import Food from "./components/Food.svelte";
 </script>
 
-<main>
-  <h1>Svelte + Node.js API</h1>
-  <h2>
-    Deployed with
-    <a href="https://vercel.com/docs" target="_blank" rel="noreferrer noopener">
-      Vercel
-    </a>
-    !
-  </h2>
+<style>
+  :global(body) {
+    background-color: slateblue;
+    font-size: 20px;
+    font-family: "Raleway", sans-serif;
+  }
+
+  .logo {
+    font-size: 2em;
+    font-weight: 900;
+    color: white;
+    margin-top: 10px;
+    margin-left: 10px;
+  }
+
+  .message {
+    text-align: center;
+    color: white;
+    font-weight: 700;
+    font-size: 30px;
+    margin-bottom: 20px;
+  }
+
+  .foods {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin: -202px -475px;
+  }
+
+  @media screen and (max-width: 960px) {
+    .foods {
+      width: 300px;
+      top: 80px;
+      left: 50%;
+      margin: 0 0 0 -150px;
+    }
+  }
+
+  .content {
+    min-height: calc(100vh - 100px);
+  }
+
+  .attributes {
+    color: white;
+    font-size: 12px;
+    height: 80px;
+    text-align: center;
+  }
+
+  .attributes a {
+    color: white;
+  }
+
+  .attributes p {
+    margin: 3px 0;
+  }
+</style>
+
+<svelte:head>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;500;600;700;800;900&display=swap"
+    rel="stylesheet" />
+</svelte:head>
+
+<div class="content">
+  <div class="logo">fooodee</div>
+
+  <div class="foods">
+    <div class="message">Select the type of meat you wish to oven bake:</div>
+
+    {#each foods as food}
+      <Food {...food} />
+    {/each}
+  </div>
+</div>
+<div class="attributes">
+  <p>Created by Ashley Newman</p>
   <p>
-    <a
-      href="https://github.com/zeit/now/tree/master/examples/svelte"
-      target="_blank"
-      rel="noreferrer noopener">
-      This project
-    </a>
-    is a
-    <a href="https://svelte.dev/">Svelte</a>
-    app with three directories,
-    <code>/public</code>
-    for static assets,
-    <code>/src</code>
-    for components and content, and
-    <code>/api</code>
-    which contains a serverless
-    <a href="https://nodejs.org/en/">Node.js</a>
-    function. See
-    <a href="/api/date">
-      <code>api/date</code>
-      for the Date API with Node.js
-    </a>
-    .
+    <a href="http://www.ajkprojects.com">ajkprojects.com</a>
   </p>
-  <br />
-  <h2>The date according to Node.js is:</h2>
-  <p>{date ? date : 'Loading date...'}</p>
-</main>
+  Icons made by
+  <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a>
+  from
+  <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a>
+</div>
