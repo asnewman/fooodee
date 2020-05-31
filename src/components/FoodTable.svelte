@@ -6,6 +6,11 @@
 </script>
 
 <style>
+  .table-wrapper {
+    width: 100%;
+    overflow: auto;
+  }
+
   table {
     width: 100%;
     border-collapse: collapse;
@@ -40,19 +45,21 @@
   <b>{internalCTemp}C</b>
   .
 </p>
-<table>
-  <tr>
-    <th>Part</th>
-    <th>Temp F</th>
-    <th>Temp C</th>
-    <th>Time (min)</th>
-  </tr>
-  {#each parts as part}
+<div class="table-wrapper">
+  <table>
     <tr>
-      <td>{part.name}</td>
-      <td>{part.fTemp}</td>
-      <td>{part.cTemp}</td>
-      <td>{part.time}</td>
+      <th>Part</th>
+      <th>Temp F</th>
+      <th>Temp C</th>
+      <th>Time (min)</th>
     </tr>
-  {/each}
-</table>
+    {#each parts as part}
+      <tr>
+        <td>{part.name}</td>
+        <td>{part.fTemp}</td>
+        <td>{part.cTemp}</td>
+        <td>{part.time}</td>
+      </tr>
+    {/each}
+  </table>
+</div>
